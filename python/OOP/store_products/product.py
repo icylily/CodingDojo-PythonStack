@@ -15,3 +15,8 @@ class Product:
         print("This product is  ",self.product_name)
         print ("price is ",self.price)
         print("category is ",self.category)
+
+harrypoter = Product('Harry poter',20,'book')
+harrypoter.print_info( )
+harrypoter.update_price(0.01,True)
+harrypoter.print_info()
