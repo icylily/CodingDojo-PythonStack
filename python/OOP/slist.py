@@ -35,8 +35,7 @@ class SList:
         # runner = self.head.next
         r_val = self.head.val
         self.head = self.head.next
-        return self
-        # return r_val
+        return r_val
     def remove_from_back(self):
         if self.head == None:
             return False
