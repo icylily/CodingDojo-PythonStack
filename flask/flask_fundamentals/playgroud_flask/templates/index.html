@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle.css') }}">
+    <title>Playground Flask</title>
+</head>
+<body>
+    <div class = "container">
+        <h1>Welcome!</h1>
+        {% for x in range(0,amounts): %}
+        <!-- <p>{{amounts}}</p>
+        <p>{{color}}</p> -->
+        <div class="playground"  style="background-color:{{color}}"></div>
+        {% endfor %}
+        <!-- <div class = "playground"></div>
+        <div class="playground"></div>
+        <div class="playground"></div> -->
+    </div>
+</body>
+</html>
