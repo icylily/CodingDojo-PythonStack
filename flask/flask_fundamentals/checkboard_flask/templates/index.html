@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='mystyle.css') }}">
+    <title>Checkboard</title>
+</head>
+<body>
+    <table >
+        {% for i in range(0,y_length):%}
+        <tr>
+            {% for j in range(0,x_length): %}
+                {%if (i+j)%2 == 0 :%}
+                <td style="background-color:{{color1}}">  </td>
+                {% else: %}
+                <td style="background-color:{{color2}}"> </td>
+                {% endif%}
+            {% endfor %}
+ 
+        </tr>
+        {% endfor%}
+
+    </table>
+</body>
+</html>
