@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='mystyle.css') }}">
+    <title>Great number game</title>
+</head>
+<body>
+    <div class = "container">
+        <h1>Welcome to the great number game!</h1>
+        <h4>I am thinking of a number between 1 and 100.</h4>
+        <h4>Take a guess!</h4>
+        {%if session['result'] == 3%}
+        <div class = "right">
+            <h2>Congrats!You got it!</h2>
+            <h3>{{session['value']}}was the number.</h3>
+            <img src="{{ url_for('static', filename='congratalation.jpg') }}" alt="congrats" style="width:300px;height:160px;">
+            <form action="/reset" method="post">
+                <input type="submit" name="reset" value="Try again">
+            </form>
+        </div>
+        {%endif%}
+        {%if session['result'] == 0%}
+        <div class="try_again">
+        <h2>Please input a valid number.</h2>
+        </div>
+        {%endif%}
+        {%if session['result'] == 1%}
+        <div class="try_again">
+            <h2>{{session['guessed']}} is lower than my number!</h2>
+        </div>
+        {%endif%}
+        {%if session['result'] == 2%}
+        <div class="try_again">
+            <h2>{{session['guessed']}} is higher than my number!</h2>
+        </div>
+        {%endif%}
+        <div class="result"></div>
+        {%if session['result'] != 3%}
+        <div class= "form_area">
+            <form action="/guess" method="post">
+                <input type="text" name="guessed" required>
+                <input type="submit" name="submit" value="submit">
+            </form>
+        </div>
+        {%endif%}
+    </div>
+</body>
+</html>
