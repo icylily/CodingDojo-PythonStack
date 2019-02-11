@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>Dojo Fruit Store Assignment</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+<body>
+
+    <header>
+        <div class="navbar navbar-dark bg-dark box-shadow">
+          <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+              <strong>Dojo Fruit Store</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </div>
+      </header>
+  
+      <main role="main">
+  
+        <section class="jumbotron text-center">
+          <div class="container">
+            <h1 class="jumbotron-heading">Dojo Fruits</h1>
+            <div class = "fruit">
+              <img src="{{ url_for('static', filename='img/apple.png') }}" alt="apple" style="width:120px;height: 120px;">
+              <p>Less than 100 calories in a medium-sized apple. Apples are free of fat, sodium and cholesterol. That same medium-sized
+              apple contains 4 grams of dietary fiber, which is 17% of the daily recommended value for Americans.</p>
+            </div>
+            <div class = "fruit">
+              <img src="{{ url_for('static', filename='img/blackberry.png') }}" alt="blackberry" style="width:120px;height: 120px;">
+              <p>
+                The nutrient list of blackberries is extensive. They are loaded with vitamin C (a 100g serving has 23 mg or 35 percent
+                of the recommended daily allowance or RDA), but are low in calories (only 43 calories per 100g serving) and sodium. They
+                are an excellent source of both soluble and insoluble fiber.
+              </p>
+            </div>
+            <div class="fruit">
+              <img src="{{ url_for('static', filename='img/raspberry.png') }}" alt="raspberry" style="width:120px;height: 120px;">
+              <p>
+                percent of your vitamin C needs, 12 percent of vitamin K, 6 percent of folate, 5 percent of vitamin E, iron, and
+                potassium, and 41 percent of manganese needs for the day as well as lesser amounts of thiamin, riboflavin, niacin,
+                pantothenic acid, vitamin B-6, calcium
+              </p>
+            </div>
+            <div class="fruit">
+              <img src="{{ url_for('static', filename='img/strawberry.png') }}" alt="strawberry" style="width:120px;height: 120px;">
+              <p>
+                Strawberries are rich in the essential nutrients vitamin C, potassium, folic acid, and fiber. One cup of fresh
+                strawberries contains 160 percent of the daily recommended quantity of vitamin C, for only 50 calories.
+              </p>
+            </div>
+            
+            
+            <p>
+              <a href="/" class="btn btn-primary my-2">Go back</a>
+            </p>
+          </div>
+        </section>
+  
+      </main>
+      
+</body>
+</html>
