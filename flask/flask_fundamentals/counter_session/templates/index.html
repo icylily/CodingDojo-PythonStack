@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>Counter</title>
+</head>
+<body>
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Counter</h1>
+            <p class="lead text-muted">{{session['counter']}} times.</p>
+            <p>
+                <a href="/addtwo" class="btn btn-primary my-2">Add 2 visits</a>
+                <a href="/reset" class="btn btn-primary my-2">reset</a>
+            </p>
+        </div>
+    </section>
+</body>
+</html>
