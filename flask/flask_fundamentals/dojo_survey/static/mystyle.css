@@ -1,0 +1,26 @@
+.container{
+    border:solid 2px black;
+    margin:auto;
+    margin-top: 50px;
+    width:500px;
+    padding:20px;
+}
+input[type=text]{
+    width:175px;
+    padding:1px;
+}
+select{
+    width:180px;
+    padding:1px;
+}
+h1{
+    text-decoration:underline;
+}
+p.lable{
+    display:inline-block;
+    text-align: left;
+}
+p.result{
+    display:inline-block;
+    text-align: right;
+}

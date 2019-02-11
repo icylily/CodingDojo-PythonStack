@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{url_for('static',filename = 'mystyle.css')}}">
+    <title>Dojo Survey</title>
+</head>
+<body>
+    
+    <div class = "container">
+        <form action="/results" method="post">
+            <!-- <fieldset> -->
+                
+                <p>Your name:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type='text' name='name'></p>
+                Location:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <select name="location" >
+                    <option value="Berkeley">Berkeley,CA</option>
+                    <option value="Boise">Boise,ID</option>
+                    <option value="Chicago">Chicago,IL</option>
+                    <option value="Dallas">Dallas,TX</option>
+                    <option value="losangeles">Los Angeles,CA</option>
+                    <option value="orange">Orange County</option>
+                    <option value="Seattle">Seattle,WA</option>
+                    <option value="Silicon">Silicon Valley,CA</option>
+                    <option value="Tulsa">Tulsa,OK</option>
+                    <option value="Tysons">Tysons Corner,VA</option>
+                    <option value="Online">Online</option>
+                </select>
+                <br><br>
+                Favorite Language:&nbsp&nbsp&nbsp&nbsp
+                <select name="languge" >
+                    <option value="HTML">HTML</option>
+                    <option value="CSS">CSS</option>
+                    <option value="Javascript">Javascript</option>
+                    <option value="Python">Python</option>
+                    <option value="Mean">Mean</option>
+                    <option value="Rubby">Rubby</option>
+                    <option value="Java">Java</option>
+                    <option value="C#">C#.NET</option>
+                </select><br><br>
+               
+                Do you have any previous technical background? <br>
+                <input type="radio" name="background" value="none" checked>Totally No<br>
+                <input type="radio" name="background" value="little"> A little relevant experience, no more than half a year<br>
+                <input type="radio" name="background" value="some"> More than one year relevant experience. <br> <br>
+                How did you learn about our school? You can choose more than one answer: <br>
+                <input type="checkbox" name="source" value="facebook"> Facebook<br>
+                <input type="checkbox" name="source" value="twitter"> Twitter<br>
+                <input type="checkbox" name="source" value="jobhuntingsite" > Job hunting site<br>
+                <input type="checkbox" name="source" value="friend">Via a friend <br>
+                <input type="checkbox" name="source" value="other">Other <br><br>
+                Comment(optional): <br> <textarea rows="4" cols="50" name="comments">
+
+                </textarea> <br>
+                <br>
+                <input type="submit"> <br><br>
+
+            <!-- </fieldset> -->
+           
+        </form>
+    </div>
+</body>
+</html>
