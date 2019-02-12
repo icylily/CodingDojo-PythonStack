@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{url_for('static',filename='mystyle.css')}}">
+    <title>Pets</title>
+</head>
+<body>
+    <div class = 'container'>
+        <h2>All the Pets!</h2>
+        <table class="gradienttable">
+            <tr>
+                <th>
+                    <p>ID 1</p>
+                </th>
+                <th>
+                    <p>Name</p>
+                </th>
+                <th>
+                    <p>Type</p>
+                </th>
+            </tr>
+            {%for onepet in pets%}
+            <tr>
+                <td>
+                    <p>{{onepet['pet_id']}}</p>
+                </td>
+                <td>
+                    <p>{{onepet['name']}}</p>
+                </td>
+                <td>
+                    <p>{{onepet['type']}}</p>
+                </td>
+            </tr>
+            {%endfor%}
+            
+        </table>
+    </div>
+    <div class = "footer">
+        <h2>Add a pet!</h2>
+        <form action="/addpet" method='post'>
+          Name: <input type="text" name = 'petname' required> <br> <br>
+          Type: <input type="text" name = 'pettype'  required> <br> <br>
+            <input type="submit" name = 'sybmit' value = 'Add'>
+        </form>
+    </div>
+</body>
+</html>
