@@ -3,3 +3,4 @@ env/**
 my_environments/**
 my_environments/
 my_environments
+ my_environments/py3Env/**
