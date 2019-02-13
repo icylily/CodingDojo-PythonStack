@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Update</title>
+</head>
+<body>
+    <h1>User{{user[0]["user_id"]}}</h1>
+    <a href="/users">home</a>
+    <br>
+    <form action="/users/{{user[0]["user_id"]}}/edit/excute" method="post">
+        <p>First Name:&NonBreakingSpace;<input type="text" name="firstname" value={{user[0]['first_name']}}></p>  
+        <p>Last Name:&NonBreakingSpace;<input type="text" name="lastname" value={{user[0]['last_name']}}></p> 
+        <p>Email:&NonBreakingSpace;<input type="text" name="email" value={{user[0]['email']}}></p>
+
+        <input type="submit" value='Update'>
+    </form> <br>
+
+    <a href="/users/{{user[0]['user_id']}}">Show User</a>
+</body>
+</html>

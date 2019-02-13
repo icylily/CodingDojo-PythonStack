@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{url_for('static',filename='all_users_style.css')}}">
+    <title>Read (all)</title>
+
+</head>
+<body>
+     
+    <div class='container'>
+        <h1>All Users!</h1>
+        <table class="gradienttable">
+            <tr>
+                <th>
+                    <p>ID</p>
+                </th>
+                <th>
+                    <p>Full Name</p>
+                </th>
+                <th>
+                    <p>Email</p>
+                </th>
+                <th>
+                    <p>Created At</p>
+                </th>
+                <th>
+                    <p>Actions</p>
+                </th>
+            </tr>
+            {%for user in allusers%}
+            <tr>
+                <td>
+                    <p>{{user['user_id']}}</p>
+                </td>
+                <td>
+                    <p>{{user['first_name']}}&nbsp {{user['last_name']}}</p>
+                </td>
+                <td>
+                    <p>{{user['email']}}</p>
+                </td>
+                <td>
+                    <p>{{user['created_at']}}</p>
+                </td>
+                <td>
+                    <p> 
+                        <a href="/users/{{user['user_id']}}"> Show</a> |
+                        <a href="/users/{{user['user_id']}}/edit">Edit</a>|
+                        <a href="/users/{{user['user_id']}}/delete">Delete</a>
+                    </p>
+                </td>
+            </tr>
+            {%endfor%}
+    
+        </table>
+        <br><br>
+        <a href="/users/new">Add a new user</a>
+    </div>
+</body>
+</html>
