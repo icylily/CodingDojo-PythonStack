@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    Hello {{ name }}!
+    Hello {{ other_name }}
+
+    <form action="/process" method="POST">
+        What is your name?
+        <input name="Name" type="text"/>
+
+        <input type="submit" name="Submit"/>
+
+    </form>
+
+    <a href="/{{ name }}">Link to named page</a>
+</html>
