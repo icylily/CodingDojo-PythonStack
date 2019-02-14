@@ -44,15 +44,15 @@ INSERT INTO `backgroud` VALUES (1,'Absolutely Raw','2019-02-13 10:41:10','2019-0
 UNLOCK TABLES;
 
 --
--- Table structure for table `laguage`
+-- Table structure for table `language`
 --
 
-DROP TABLE IF EXISTS `laguage`;
+DROP TABLE IF EXISTS `language`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `laguage` (
+CREATE TABLE `language` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `laguage` varchar(45) DEFAULT NULL,
+  `language` varchar(45) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
@@ -60,13 +60,13 @@ CREATE TABLE `laguage` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `laguage`
+-- Dumping data for table `language`
 --
 
-LOCK TABLES `laguage` WRITE;
-/*!40000 ALTER TABLE `laguage` DISABLE KEYS */;
-INSERT INTO `laguage` VALUES (1,'HTML','2019-02-13 10:43:24','2019-02-13 10:43:24'),(2,'CSS','2019-02-13 10:43:24','2019-02-13 10:43:24'),(3,'JavaScript','2019-02-13 10:43:24','2019-02-13 10:43:24'),(4,'Python','2019-02-13 10:43:24','2019-02-13 10:43:24'),(5,'Mean','2019-02-13 10:43:24','2019-02-13 10:43:24'),(6,'Rubby','2019-02-13 10:43:24','2019-02-13 10:43:24'),(7,'Jave','2019-02-13 10:43:24','2019-02-13 10:43:24'),(8,'C#.NET','2019-02-13 10:43:24','2019-02-13 10:43:24');
-/*!40000 ALTER TABLE `laguage` ENABLE KEYS */;
+LOCK TABLES `language` WRITE;
+/*!40000 ALTER TABLE `language` DISABLE KEYS */;
+INSERT INTO `language` VALUES (1,'HTML','2019-02-13 10:43:24','2019-02-13 10:43:24'),(2,'CSS','2019-02-13 10:43:24','2019-02-13 10:43:24'),(3,'JavaScript','2019-02-13 10:43:24','2019-02-13 10:43:24'),(4,'Python','2019-02-13 10:43:24','2019-02-13 10:43:24'),(5,'Mean','2019-02-13 10:43:24','2019-02-13 10:43:24'),(6,'Rubby','2019-02-13 10:43:24','2019-02-13 10:43:24'),(7,'Jave','2019-02-13 10:43:24','2019-02-13 10:43:24'),(8,'C#.NET','2019-02-13 10:43:24','2019-02-13 10:43:24');
+/*!40000 ALTER TABLE `language` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -77,12 +77,12 @@ DROP TABLE IF EXISTS `location`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `location` (
-  `location_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `city` varchar(45) DEFAULT NULL,
   `state` varchar(45) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`location_id`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -104,10 +104,10 @@ DROP TABLE IF EXISTS `source`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `source` (
-  `source_id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `source` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`source_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,19 +133,11 @@ CREATE TABLE `survey` (
   `location_id` int(11) DEFAULT NULL,
   `language_id` varchar(45) DEFAULT NULL,
   `background_id` varchar(45) DEFAULT NULL,
-  `source_id` varchar(45) DEFAULT NULL,
   `comment` text,
-  `created_at` datetime DEFAULT NULL,
-  `updated_at` datetime DEFAULT NULL,
-  `surveycol` varchar(45) DEFAULT 'NOW() ON UPDATE NOW()',
-  `location_location_id` int(11) NOT NULL,
-  `laguage_id` int(11) NOT NULL,
-  PRIMARY KEY (`survey_id`),
-  KEY `fk_survey_location_idx` (`location_location_id`),
-  KEY `fk_survey_laguage1_idx` (`laguage_id`),
-  CONSTRAINT `fk_survey_laguage1` FOREIGN KEY (`laguage_id`) REFERENCES `laguage` (`id`),
-  CONSTRAINT `fk_survey_location` FOREIGN KEY (`location_location_id`) REFERENCES `location` (`location_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`survey_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -154,6 +146,7 @@ CREATE TABLE `survey` (
 
 LOCK TABLES `survey` WRITE;
 /*!40000 ALTER TABLE `survey` DISABLE KEYS */;
+INSERT INTO `survey` VALUES (2,'Ann',3,'4','2','good','2019-02-13 13:05:53','2019-02-13 13:05:53'),(3,'lily',1,'1','3','\r\n      pretty good         ','2019-02-13 13:11:45','2019-02-13 13:11:45'),(4,'lily',1,'1','3','\r\n      pretty good         ','2019-02-13 13:12:16','2019-02-13 13:12:16'),(5,'d',1,'1','3','\r\n                ','2019-02-13 13:13:16','2019-02-13 13:13:16'),(6,'cc',1,'1','3','\r\n          dd      ','2019-02-13 14:47:11','2019-02-13 14:47:11'),(7,'ccd',1,'1','3','not bad    ','2019-02-13 14:48:52','2019-02-13 14:48:52'),(8,'ccd',1,'1','3','not bad    ','2019-02-13 14:48:52','2019-02-13 14:48:52'),(9,'ccd',1,'1','3','not bad    ','2019-02-13 14:48:52','2019-02-13 14:48:52'),(10,'ccd',1,'1','3','not bad    ','2019-02-13 14:49:22','2019-02-13 14:49:22'),(11,'ccd',1,'1','3','dd','2019-02-13 15:04:11','2019-02-13 15:04:11'),(12,'ccdd',1,'1','3','dd','2019-02-13 15:05:35','2019-02-13 15:05:35'),(13,'ccddddd',1,'1','3','dddd','2019-02-13 15:09:11','2019-02-13 15:09:11'),(14,'lili',1,'1','3','dddd','2019-02-13 15:12:11','2019-02-13 15:12:11'),(15,'liliy',1,'1','3','dddd','2019-02-13 15:13:29','2019-02-13 15:13:29'),(16,'liliyee',1,'1','3','dddd','2019-02-13 15:14:12','2019-02-13 15:14:12'),(17,'liliyeedd',1,'1','3','dddd','2019-02-13 15:46:38','2019-02-13 15:46:38'),(18,'liliyeeddddd',1,'1','3','dddd','2019-02-13 15:47:34','2019-02-13 15:47:34'),(19,'aadd',1,'1','3','ddd','2019-02-13 15:49:03','2019-02-13 15:49:03'),(20,'tatiana',1,'1','3','ddd','2019-02-13 15:50:04','2019-02-13 15:50:04'),(21,'lanford',1,'1','3','ddd','2019-02-13 15:54:46','2019-02-13 15:54:46'),(22,'lanford1',1,'1','3','ddd','2019-02-13 15:55:15','2019-02-13 15:55:15'),(23,'lanford13',1,'1','3','ddd','2019-02-13 16:04:43','2019-02-13 16:04:43'),(24,'lanford13d',1,'1','3','ddd','2019-02-13 16:11:30','2019-02-13 16:11:30'),(25,'aa',1,'1','3','\r\n                ','2019-02-13 16:24:24','2019-02-13 16:24:24');
 /*!40000 ALTER TABLE `survey` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,13 +158,13 @@ DROP TABLE IF EXISTS `survey_source`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `survey_source` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `survey_id` int(11) DEFAULT NULL,
   `source_id` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,6 +173,7 @@ CREATE TABLE `survey_source` (
 
 LOCK TABLES `survey_source` WRITE;
 /*!40000 ALTER TABLE `survey_source` DISABLE KEYS */;
+INSERT INTO `survey_source` VALUES (1,6,1,'2019-02-13 14:55:30','2019-02-13 14:55:30'),(2,6,2,'2019-02-13 14:55:30','2019-02-13 14:55:30'),(3,16,2,'2019-02-13 15:14:12','2019-02-13 15:14:12'),(4,16,3,'2019-02-13 15:14:12','2019-02-13 15:14:12'),(5,16,4,'2019-02-13 15:14:13','2019-02-13 15:14:13'),(6,17,2,'2019-02-13 15:46:38','2019-02-13 15:46:38'),(7,17,3,'2019-02-13 15:46:38','2019-02-13 15:46:38'),(8,17,4,'2019-02-13 15:46:38','2019-02-13 15:46:38'),(9,18,2,'2019-02-13 15:47:34','2019-02-13 15:47:34'),(10,18,3,'2019-02-13 15:47:34','2019-02-13 15:47:34'),(11,18,4,'2019-02-13 15:47:34','2019-02-13 15:47:34'),(12,19,2,'2019-02-13 15:49:03','2019-02-13 15:49:03'),(13,19,3,'2019-02-13 15:49:03','2019-02-13 15:49:03'),(14,19,4,'2019-02-13 15:49:03','2019-02-13 15:49:03'),(15,20,2,'2019-02-13 15:50:04','2019-02-13 15:50:04'),(16,20,3,'2019-02-13 15:50:04','2019-02-13 15:50:04'),(17,20,4,'2019-02-13 15:50:04','2019-02-13 15:50:04'),(18,21,2,'2019-02-13 15:54:46','2019-02-13 15:54:46'),(19,21,3,'2019-02-13 15:54:46','2019-02-13 15:54:46'),(20,21,4,'2019-02-13 15:54:46','2019-02-13 15:54:46'),(21,21,5,'2019-02-13 15:54:46','2019-02-13 15:54:46'),(22,22,2,'2019-02-13 15:55:15','2019-02-13 15:55:15'),(23,22,3,'2019-02-13 15:55:15','2019-02-13 15:55:15'),(24,22,4,'2019-02-13 15:55:15','2019-02-13 15:55:15'),(25,22,5,'2019-02-13 15:55:16','2019-02-13 15:55:16'),(26,23,2,'2019-02-13 16:04:44','2019-02-13 16:04:44'),(27,23,3,'2019-02-13 16:04:44','2019-02-13 16:04:44'),(28,23,4,'2019-02-13 16:04:44','2019-02-13 16:04:44'),(29,23,5,'2019-02-13 16:04:44','2019-02-13 16:04:44'),(30,24,2,'2019-02-13 16:11:30','2019-02-13 16:11:30'),(31,24,3,'2019-02-13 16:11:30','2019-02-13 16:11:30'),(32,24,4,'2019-02-13 16:11:30','2019-02-13 16:11:30'),(33,24,5,'2019-02-13 16:11:30','2019-02-13 16:11:30'),(34,25,3,'2019-02-13 16:24:24','2019-02-13 16:24:24');
 /*!40000 ALTER TABLE `survey_source` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -196,4 +190,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-13 10:54:58
+-- Dump completed on 2019-02-13 19:43:20
