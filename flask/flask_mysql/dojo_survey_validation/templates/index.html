@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{url_for('static',filename = 'mystyle.css')}}">
+    <title>Dojo Survey</title>
+</head>
+<body>
+    
+    <div class = "container">
+        <form action="/results" method="post">
+            <!-- <fieldset> -->
+                {% with messages = get_flashed_messages() %}
+                <!-- declare a variable called messages -->
+                {% if messages %}
+                <!-- check if there are any messages -->
+                {% for message in messages %}
+                <!-- loop through the messages -->
+                <p style="color:red;">{{message}}</p> <!-- display each message in a paragraph tag -->
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <p>Your name:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<input type='text' name='name'></p>
+                Location:&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <select name="location" >
+                    {%for location_item in location%}
+                    <option value="{{location_item['id']}}">{{location_item["city"]}},{{location_item["state"]}}</option>
+                    {%endfor%}
+                </select>
+                <br><br>
+                Favorite Language:&nbsp&nbsp&nbsp&nbsp
+                <select name="languge" >
+                    {%for language_item in language%}
+                    <option value="{{language_item['id']}}">{{language_item['language']}}</option>
+                    {%endfor%}
+                </select><br><br>
+                Do you have any previous technical background? <br>
+                {%for background_item in background%}
+                <input type="radio" name="background" value="{{background_item['id']}}" checked >{{background_item['backgroud']}}<br>
+                {%endfor%}
+            
+                How did you learn about our school? You can choose more than one answer: <br>
+                {%for source_item in source%}
+                <input type="checkbox" name="source" value="{{source_item['id']}}"> {{source_item["source"]}}<br>
+                {%endfor%}
+                Comment(optional): <br> <textarea rows="4" cols="50" name="comments">
+
+                </textarea> <br>
+                <br>
+                <input type="submit"> <br><br>
+
+            <!-- </fieldset> -->
+        </form>
+    </div>
+</body>
+</html>
