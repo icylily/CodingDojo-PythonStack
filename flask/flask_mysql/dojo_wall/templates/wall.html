@@ -71,6 +71,7 @@
                 <div class="col-sm-5">
                     {%if "username" in session:%}
                     <h2>Send Message</h2>
+                    <h4>You have sent {{session["sent_message"]}} messages so far!</h4>
                     <table>
                         {%for receiver in receiver_list%}
                         <tr>
@@ -89,7 +90,18 @@
 
                         {%endfor%}
                     </table>
-                    
+                    {% with errors = get_flashed_messages(category_filter=["message"]) %}
+                    {% if errors %}
+                    <div class="alert-message block-message error">
+                        <a class="close" href="#">×</a>
+                        <ul>
+                            {%- for msg in errors %}
+                            <li style="color:blue;">{{ msg }}</li>
+                            {% endfor -%}
+                        </ul>
+                    </div>
+                    {% endif %}
+                    {% endwith %}
                     {%endif%}
 
                 </div>

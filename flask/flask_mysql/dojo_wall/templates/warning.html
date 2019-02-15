@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Danger</title>
+</head>
+<body>
+    
+    {% with errors = get_flashed_messages(category_filter=["danger"]) %}
+    {% if errors %}
+    <div class="alert-message block-message error">
+        
+        <ul>
+            {%- for msg in errors %}
+            <li style="color:blue;">{{ msg }}</li>
+            {% endfor -%}
+        </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+    {%if "userid" in session:%}
+    <a href="/wall/{{session["userid"]}}">Go Back</a>
+
+    {%else%}    
+    <a href="/">Go Home </a>
+    {%endif%}
+</body>
+</html>
