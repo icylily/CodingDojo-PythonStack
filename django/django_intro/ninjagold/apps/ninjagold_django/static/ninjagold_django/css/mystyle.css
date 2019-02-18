@@ -1,0 +1,27 @@
+.container{
+    margin:auto;
+
+}
+.places{
+    display: inline-block;
+    width:200px;
+    height: 100px;
+    margin:7px;
+}
+.red{
+    color:red;
+}
+.activities{
+    display: block;
+    width:840px;
+    min-height: 50px;
+    border:solid 1px black;
+    margin-top: 40px;
+    margin-left: 8px;
+    padding: 5px;
+    margin-bottom: 20px;
+}
+.foot{
+    margin-left: 8px;
+    padding: 5px;
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ninja Gold</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'ninjagold_django/css/mystyle.css' %}">
+</head>
+
+<body>
+    <div class='container'>
+        <div class='header'>
+            <h1>Your Gold:{{request.session.gold}}</h1>
+            <h2>Your goal is to collect {{request.session.goal}} golds wthin {{request.session.steps}} steps</h2>
+            <h2>You current steps is :{{request.session.current_steps}}</h2>
+        </div>
+        {%if request.session.status == 0 %}
+        <div class='places'>
+            <form action="/process_money" method='post'>
+                {% csrf_token %}
+                <fieldset>
+                    <h2>Farm</h2>
+                    <p>(earns 10-20 golds)</p>
+                    <input type="submit" name="farm_submit" id="farm" value='Find Gold!'>
+                    <input type="hidden" name="wich_place" value="farm">
+                </fieldset>
+            </form>
+        </div>
+        <div class='places'>
+            <form action="/process_money" method='post'>
+                {% csrf_token %}
+                <fieldset>
+                    <h2>Cave</h2>
+                    <p>(earns 5-10 golds)</p>
+                    <input type="submit" name="cave_submit" id="cave" value='Find Gold!'>
+                    <input type="hidden" name="wich_place" value="cave">
+                </fieldset>
+            </form>
+        </div>
+        <div class='places'>
+            <form action="/process_money" method='post'>
+                {% csrf_token %}
+                <fieldset>
+                    <h2>House</h2>
+                    <p>(earns 2-5 golds)</p>
+                    <input type="submit" name="house_submit" id="house" value='Find Gold!'>
+                    <input type="hidden" name="wich_place" value="house">
+                </fieldset>
+            </form>
+        </div>
+        <div class='places'>
+            <form action="/process_money" method='post'>
+                {% csrf_token %}
+                <fieldset>
+                    <h2>Casino</h2>
+                    <p>(earns/takes 0-50 golds)</p>
+                    <input type="submit" name="casino_submit" id="casino" value='Find Gold!'>
+                    <input type="hidden" name="wich_place" value="casino">
+                </fieldset>
+            </form>
+        </div>
+        {%endif%}
+        {%if request.session.status == 1 %}
+        <div class='activities'>
+            <h2 style='color:green;'>Congras! You Won!!</h2>
+        </div>
+        {%endif%}
+        {%if request.session.status == 2 %}
+        <div class='activities'>
+            <h2 style='color:red;'>You lose!!</h2>
+        </div>
+        {%endif%}
+        <div class='activities'>
+            <h2>Activities:</h2>
+            <p>{{request.session.log|safe}}</p> 
+            <!-- <form action="/process_money" method="post">
+                {% csrf_token %}
+                <textarea name="activities" id="activities" cols="120" rows="10" readonly = "true">{{request.session.log|safe}}
+                </textarea>
+            </form> -->
+        </div>
+        <div class="foot">
+            <form action="/refresh" method="post">
+                {% csrf_token %}
+                <input type="submit" name="submit" value="Start over!">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
