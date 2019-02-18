@@ -1,0 +1,33 @@
+/* random_word */
+
+.container{
+    width:400px;
+    min-height: 200px;
+    /* border:solid 1px black; */
+    margin:auto;
+    margin-top:20px;
+}
+.header{
+    /* border:solid 1px black; */
+    text-align: center;
+    color: gray;
+    margin:auto;
+    margin-top:15px;
+    padding:5px;
+}
+.content{
+    border:solid 1px black;
+    text-align: center;
+    color: blue;
+    margin:auto;
+    margin-top:15px;
+    padding:5px;
+}
+.footer{
+    text-align: center;
+    color: blue;
+    margin:auto;
+    margin-top:15px;
+    padding:5px;
+}
+}

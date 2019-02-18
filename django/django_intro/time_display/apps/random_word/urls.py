@@ -1,4 +1,4 @@
-# first_display
+### random_word ###
 
 from django.conf.urls import url
 from . import views
