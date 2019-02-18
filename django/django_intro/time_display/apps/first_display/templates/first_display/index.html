@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Display Time</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'first_display/css/mystyle.css' %}">
+    <!-- <script src="{% static 'app_name/js/script.js' %}"></script> -->
+
+</head>
+<body>
+   
+    <div class= "container">
+        <div class = "title">
+            <h2>The current time and date:</h2>
+        </div>
+        <div class = "time">
+            <h1>{{time}}</h1>
+        </div>
+    </div>
+</body>
+</html>
