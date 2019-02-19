@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Authors</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'books_authors_app/css/mystyle.css' %}">
+</head>
+
+<body>
+    <h1></h1>
+    <div class="container">
+        <div class="content-left">
+            <h2>Add an author</h2>
+            <form action="/process" method='post' class="form-book">
+                {% csrf_token %}
+                <p class="form-book">First name:&nbsp<br><input type="text" name="first_name" Placeholder="First name"></p>
+                <p class="form-book">Last name:&nbsp<br><input type="text" name="last_name" Placeholder="Last name"></p>
+                <p class="form-book"> Note:&nbsp<br><textarea name="notes" id="notes" cols="30" rows="10"
+                        placeholder="Add some note"></textarea></p>
+                <input type="submit" name="add_author" id="author" value='Add'>
+                <input type="hidden" name="wich_place" value="add_author">
+            </form>
+        </div>
+        <div class="content-right">
+            <h2>All authors</h2>
+            <table class="gradienttable">
+                <tr>
+                    <th>
+                        <p>ID</p>
+                    </th>
+                    <th>
+                        <p>Name</p>
+                    </th>
+                    <th>
+                        <p>Action</p>
+                    </th>
+
+                </tr>
+                {% for author in all_the_authors %}
+                <tr>
+                    <th>
+                        <p>{{ author.id }}</p>
+                    </th>
+                    <th>
+                        <p>{{ author.first_name}}&nbsp {{ author.last_name}}</p>
+                    </th>
+                    <th>
+                        <p> <a href="/authors/{{ author.id }}"> View</a> </p>
+                    </th>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

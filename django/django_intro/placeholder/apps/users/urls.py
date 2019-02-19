@@ -1,7 +1,6 @@
 ###users.urls####
 from django.conf.urls import url
 from . import views
-from django.core.urlresolvers import reverse
 
 urlpatterns = [
     url(r'^$', views.index),

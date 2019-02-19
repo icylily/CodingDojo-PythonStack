@@ -1,0 +1,128 @@
+(DJANGO~1) C:\Users\Lili\Desktop\Coding Dojo\python_stack\django\django_intro\first_orm>python manage.py shell
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.3.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from apps.user_app.models import *
+
+In [2]: User.objects.create(first_name = "Aden",last_name = "Wood",email_address="ad
+   ...: en@123.com",age = 22)
+Out[2]: <User: User object>
+
+In [3]: User.objects.create(first_name = "Emma",last_name = "Wong",email_address="em
+   ...: ma@123.com",age = 29)
+Out[3]: <User: User object>
+
+In [4]:
+
+In [4]: User.objects.create(first_name = "Mia",last_name = "kohng",email_address="an
+   ...: ne@123.com",age = 20)
+Out[4]: <User: User object>
+
+In [5]: all=User.objects.all()
+
+In [6]: all
+Out[6]: <QuerySet [<User: User object>, <User: User object>, <User: User object>]>
+
+In [7]: last =  User.objects.last()
+
+In [8]: last
+Out[8]: <User: User object>
+
+In [9]: last.__dict__
+Out[9]:
+{'_state': <django.db.models.base.ModelState at 0x29d514d3be0>,
+ 'id': 3,
+ 'first_name': 'Mia',
+ 'last_name': 'kohng',
+ 'email_address': 'anne@123.com',
+ 'age': 20,
+ 'created_at': datetime.datetime(2019, 2, 18, 23, 53, 14, 659160, tzinfo=<UTC>),
+ 'updated_at': datetime.datetime(2019, 2, 18, 23, 53, 14, 660111, tzinfo=<UTC>)}
+
+In [10]: first= User.objects.first()
+
+In [11]: first.__dict__
+Out[11]:
+{'_state': <django.db.models.base.ModelState at 0x29d5150f240>,
+ 'id': 1,
+ 'first_name': 'Aden',
+ 'last_name': 'Wood',
+ 'email_address': 'aden@123.com',
+ 'age': 22,
+ 'created_at': datetime.datetime(2019, 2, 18, 23, 51, 53, 46401, tzinfo=<UTC>),
+ 'updated_at': datetime.datetime(2019, 2, 18, 23, 51, 53, 46401, tzinfo=<UTC>)}
+
+In [12]: c= User.objects.get(id=3)
+
+In [13]: c.__dict__
+Out[13]:
+{'_state': <django.db.models.base.ModelState at 0x29d5152b390>,
+ 'id': 3,
+ 'first_name': 'Mia',
+ 'last_name': 'kohng',
+ 'email_address': 'anne@123.com',
+ 'age': 20,
+ 'created_at': datetime.datetime(2019, 2, 18, 23, 53, 14, 659160, tzinfo=<UTC>),
+ 'updated_at': datetime.datetime(2019, 2, 18, 23, 53, 14, 660111, tzinfo=<UTC>)}
+
+In [14]: c.last_name ="Pancakes"
+
+In [15]: c.save()
+
+In [16]: c.__dict__
+Out[16]:
+{'_state': <django.db.models.base.ModelState at 0x29d5152b390>,
+ 'id': 3,
+ 'first_name': 'Mia',
+ 'last_name': 'Pancakes',
+ 'email_address': 'anne@123.com',
+ 'age': 20,
+ 'created_at': datetime.datetime(2019, 2, 18, 23, 53, 14, 659160, tzinfo=<UTC>),
+ 'updated_at': datetime.datetime(2019, 2, 18, 23, 57, 35, 251154, tzinfo=<UTC>)}
+
+In [17]: d=User.objects.get(id=2)
+
+In [18]: d.__dict__
+Out[18]:
+{'_state': <django.db.models.base.ModelState at 0x29d5152d898>,
+ 'id': 2,
+ 'first_name': 'Emma',
+ 'last_name': 'Wong',
+ 'email_address': 'emma@123.com',
+ 'age': 29,
+ 'created_at': datetime.datetime(2019, 2, 18, 23, 52, 33, 675613, tzinfo=<UTC>),
+ 'updated_at': datetime.datetime(2019, 2, 18, 23, 52, 33, 675613, tzinfo=<UTC>)}
+
+In [19]: d.delete()
+Out[19]: (1, {'user_app.User': 1})
+
+In [20]: all
+Out[20]: <QuerySet [<User: User object>, <User: User object>]>
+
+In [21]: User.objects.all().order_by("first_name")
+Out[21]: <QuerySet [<User: User object>, <User: User object>]>
+
+In [22]: User.objects.all().order_by("first_name").value()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-22-67e511fb3e1e> in <module>
+----> 1 User.objects.all().order_by("first_name").value()
+
+AttributeError: 'QuerySet' object has no attribute 'value'
+
+In [23]: User.objects.all().order_by("first_name").values()
+Out[23]: <QuerySet [{'id': 1, 'first_name': 'Aden', 'last_name': 'Wood', 'email_address': 'aden@123.com', 'age': 22, 'created_at': datetime.datetime(2019, 2, 18, 23, 51, 53, 46401, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 2, 18, 23, 51, 53, 46401, tzinfo=<UTC>)}, {'id': 3, 'first_name': 'Mia', 'last_name': 'Pancakes', 'email_address': 'anne@123.com', 'age': 20, 'created_at': datetime.datetime(2019, 2, 18, 23, 53, 14, 659160, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 2, 18, 23, 57, 35, 251154, tzinfo=<UTC>)}]>
+
+In [24]: User.objects.all().order_by(-"first_name").values()
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-24-aaf04970ea4e> in <module>
+----> 1 User.objects.all().order_by(-"first_name").values()
+
+TypeError: bad operand type for unary -: 'str'
+
+In [25]: User.objects.all().order_by("-first_name").values()
+Out[25]: <QuerySet [{'id': 3, 'first_name': 'Mia', 'last_name': 'Pancakes', 'email_address': 'anne@123.com', 'age': 20, 'created_at': datetime.datetime(2019, 2, 18, 23, 53, 14, 659160, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 2, 18, 23, 57, 35, 251154, tzinfo=<UTC>)}, {'id': 1, 'first_name': 'Aden', 'last_name': 'Wood', 'email_address': 'aden@123.com', 'age': 22, 'created_at': datetime.datetime(2019, 2, 18, 23, 51, 53, 46401, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 2, 18, 23, 51, 53, 46401, tzinfo=<UTC>)}]>
+
+In [26]:

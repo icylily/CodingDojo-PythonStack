@@ -1,0 +1,281 @@
+(DJANGO~1) C:\Users\Lili\Desktop\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py shell
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.3.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from apps.books_authors_app.models import *
+
+In [2]: Books.objects.create(title="C sharp",dest= "a book about C sharp")
+Out[2]: <Books: Books object>
+
+In [3]: Books.objects.create(title="Java",dest= "a book about Java")
+Out[3]: <Books: Books object>
+
+In [4]: Books.objects.create(title="PHP",dest= "a book about PHP")
+Out[4]: <Books: Books object>
+
+In [5]: Books.objects.create(title="Python",dest= "a book about Python" )
+Out[5]: <Books: Books object>
+
+In [6]: Books.objects.create(title="Ruby",dest= "a book about Ruby" )
+Out[6]: <Books: Books object>
+
+In [7]: Authors.objects.create(first_name = "Jane", last_name = "Austen")
+Out[7]: <Authors: Authors object>
+
+In [8]: Authors.objects.create(first_name = "Emily", last_name = "Dickinson")
+Out[8]: <Authors: Authors object>
+
+In [9]: Authors.objects.create(first_name = "Fyodor", last_name = "Dostoevksy")
+Out[9]: <Authors: Authors object>
+
+In [10]: Authors.objects.create(first_name = "William", last_name = "Shakespeare")
+Out[10]: <Authors: Authors object>
+
+In [11]: Authors.objects.create(first_name = "William", last_name = "Shakespeare")
+Out[11]: <Authors: Authors object>
+
+In [12]: c = Authors.objects.get(id =5)
+
+In [13]: c.first_name
+Out[13]: 'William'
+
+In [14]: c.delete()
+Out[14]: (1, {'books_authors_app.Authors_books': 0, 'books_authors_app.Authors': 1})
+
+In [15]: Authors.objects.create(first_name = "Lau", last_name = "Tzu")
+Out[15]: <Authors: Authors object>
+
+In [16]: exit
+
+(DJANGO~1) C:\Users\Lili\Desktop\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py makemigrations
+You are trying to add a non-nullable field 'notes' to authors without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1'
+Please select a valid option: a note
+Please select a valid option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> a note
+Invalid input: unexpected EOF while parsing (<string>, line 1)
+>>> "just a note"
+Migrations for 'books_authors_app':
+  apps\books_authors_app\migrations\0002_authors_notes.py:
+    - Add field notes to authors
+
+(DJANGO~1) C:\Users\Lili\Desktop\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, books_authors_app, contenttypes, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying books_authors_app.0002_authors_notes... OK
+
+(DJANGO~1) C:\Users\Lili\Desktop\Coding Dojo\python_stack\django\django_orm\book_authors_proj>python manage.py shell
+Python 3.7.2 (tags/v3.7.2:9a3ffc0492, Dec 23 2018, 23:09:28) [MSC v.1916 64 bit (AMD64)]
+Type 'copyright', 'credits' or 'license' for more information
+IPython 7.3.0 -- An enhanced Interactive Python. Type '?' for help.
+
+In [1]: from apps.books_authors_app import *
+
+In [2]: c = Books.objects.get(title="C sharp")
+---------------------------------------------------------------------------
+NameError                                 Traceback (most recent call last)
+<ipython-input-2-5fcaf7f5fd5e> in <module>
+----> 1 c = Books.objects.get(title="C sharp")
+
+NameError: name 'Books' is not defined
+
+In [3]:  from apps.books_authors_app.models import *
+
+In [4]: c = Books.objects.get(title="C sharp")
+
+In [5]: c.title
+Out[5]: 'C sharp'
+
+In [6]: c.title = "C#"
+
+In [7]: c.save()
+
+In [8]: c.title
+Out[8]: 'C#'
+
+In [9]: a= Authors.objects.get(id = 4)
+
+In [10]: a.first_name
+Out[10]: 'William'
+
+In [11]: a.first_name = "Bill"
+
+In [12]: a.first_name
+Out[12]: 'Bill'
+
+In [13]: a.save()
+
+In [14]: this_author = Authors.objects.get(id=1)
+
+In [15]: this_book = Books.objects.get(id=1)
+
+In [16]: this_author.books.add(this_book)
+
+In [17]: this_book = Books.objects.get(id=2)
+
+In [18]: : this_author.books.add(this_book)
+  File "<ipython-input-18-ceda4644496f>", line 1
+    : this_author.books.add(this_book)
+    ^
+SyntaxError: invalid syntax
+
+
+In [19]: this_author.books.add(this_book)
+
+In [20]: this_author.books.all()
+Out[20]: <QuerySet [<Books: Books object>, <Books: Books object>]>
+
+In [21]:  this_author = Authors.objects.get(id=2)
+
+In [22]: for (i=1,i<=3,i++):
+    ...:     this_book = Books.objects.get(id=i)
+  File "<ipython-input-22-3c7d9069f006>", line 1
+    for (i=1,i<=3,i++):
+          ^
+SyntaxError: invalid syntax
+
+
+In [23]: for i in range(1,4):
+    ...:     this_book = Books.objects.get(id=i)
+    ...:     this_book.authors.add(this_author)
+    ...:
+
+In [24]: this_author.books.all()
+Out[24]: <QuerySet [<Books: Books object>, <Books: Books object>, <Books: Books object>]>
+
+In [25]: this_author = Authors.objects.get(id=3)
+
+In [26]:  for i in range(1,5):
+    ...:     this_book = Books.objects.get(id=i)
+    ...:     this_book.authors.add(this_author)
+    ...:
+    ...:
+
+In [27]: this_author.id
+Out[27]: 3
+
+In [28]: this_author.books.all()
+Out[28]: <QuerySet [<Books: Books object>, <Books: Books object>, <Books: Books object>, <Books: Books object>]>
+
+In [29]: for book in this_author.books.all():
+    ...:     book.title
+    ...:
+
+In [30]:
+
+In [30]: for book in this_author.books.all():
+    ...:     print(book.title)
+    ...:
+C#
+Java
+PHP
+Python
+
+In [31]: books= Books.objects.all()
+
+In [32]: this_author = Authors.objects.get(id=4)
+
+In [33]: for book  in books:
+    ...:     book.authors.add(this_author)
+    ...:
+
+In [34]: book3 = Books.objects.get(id=3)
+
+In [35]: books.authors.all()
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-35-9bb21e176602> in <module>
+----> 1 books.authors.all()
+
+AttributeError: 'QuerySet' object has no attribute 'authors'
+
+In [36]: book3.authors.all()
+Out[36]: <QuerySet [<Authors: Authors object>, <Authors: Authors object>, <Authors: Authors object>]>
+
+In [37]: for author in book3.authors.all():
+    ...:     print (author.first_name)
+    ...:
+Emily
+Fyodor
+Bill
+
+In [38]: author1 = Authors.objects.get(id=1)
+
+In [39]: book3= Books.objects.get(id=3)
+
+In [40]: book3.authors.remove(author1)
+
+In [41]: author5 = Authors.objects.get(id=5)
+---------------------------------------------------------------------------
+DoesNotExist                              Traceback (most recent call last)
+<ipython-input-41-1599a31ffc6e> in <module>
+----> 1 author5 = Authors.objects.get(id=5)
+
+~\Desktop\CODING~1\PYTHON~1\MY_ENV~1\DJANGO~1\lib\site-packages\django\db\models\manager.py in manager_method(self, *args, **kwargs)
+     83         def create_method(name, method):
+     84             def manager_method(self, *args, **kwargs):
+---> 85                 return getattr(self.get_queryset(), name)(*args, **kwargs)
+     86             manager_method.__name__ = method.__name__
+     87             manager_method.__doc__ = method.__doc__
+
+~\Desktop\CODING~1\PYTHON~1\MY_ENV~1\DJANGO~1\lib\site-packages\django\db\models\query.py in get(self, *args, **kwargs)
+    383             raise self.model.DoesNotExist(
+    384                 "%s matching query does not exist." %
+--> 385                 self.model._meta.object_name
+    386             )
+    387         raise self.model.MultipleObjectsReturned(
+
+DoesNotExist: Authors matching query does not exist.
+
+In [42]: author5 = Authors.objects.get(id=6)
+
+In [43]: book2 = Books.objects.get(id=2)
+
+In [44]: book2.authors.add(author5)
+
+In [45]: author3 = Authors.objects.get(id=3)
+
+In [46]: author3.books.all()
+Out[46]: <QuerySet [<Books: Books object>, <Books: Books object>, <Books: Books object>, <Books: Books object>]>
+
+In [47]: for book in author3.books.all():
+    ...:     print (book.title)
+    ...:
+C#
+Java
+PHP
+Python
+
+In [48]: book5= Books.objects.get(id=5)
+
+In [49]: for author in book5.authors.all():
+    ...:     print(author.firstname +" "+author.last_name)
+    ...:
+---------------------------------------------------------------------------
+AttributeError                            Traceback (most recent call last)
+<ipython-input-49-299fc900b325> in <module>
+      1 for author in book5.authors.all():
+----> 2     print(author.firstname +" "+author.last_name)
+      3
+
+AttributeError: 'Authors' object has no attribute 'firstname'
+
+In [50]: for author in book5.authors.all():
+    ...:     print(author.first_name +" "+author.last_name)
+    ...:
+    ...:
+Bill Shakespeare
+
+In [51]:
+
+
+

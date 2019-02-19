@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Books</title>
+    {%load static%}
+    <link rel="stylesheet" href="{% static 'books_authors_app/css/mystyle.css' %}">
+</head>
+<body>
+    <h1></h1>
+    <div class = "container">
+        <div class = "content-left">
+            <h2>Add a book</h2>
+            <form action="/process" method='post' class="form-book">
+                {% csrf_token %}
+                    <p class="form-book">Title:&nbsp<br><input type="text" name="title" Placeholder="book title"></p> 
+                     <p class="form-book"> Description:&nbsp<br><textarea name="desc" id="desc" cols="30" rows="10" placeholder="Add some description"></textarea></p>                  
+                    <input type="submit" name="add_book" id="book" value='Add'>
+                    <input type="hidden" name="wich_place" value="add_book">
+            </form>
+        </div>
+        <div class = "content-right">
+            <h2>All books</h2>
+            <table class="gradienttable">
+                <tr>
+                    <th>
+                        <p>ID</p>
+                    </th>
+                    <th>
+                        <p>Title</p>
+                    </th>
+                    <th>
+                        <p>Action</p>
+                    </th>
+                    
+                </tr>
+                {% for book in all_the_books %}
+                <tr>
+                    <th>
+                        <p>{{ book.id }}</p>
+                    </th>
+                    <th>
+                        <p>{{ book.title }}</p>
+                    </th>
+                    <th>
+                        <p> <a href="/books/{{ book.id }}"> View</a> </p>
+                    </th>
+                
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+</html>
