@@ -16,7 +16,7 @@
     <link href="{% static 'tv_show_app/css/blog.css'%}" rel="stylesheet">
 </head>
 
-<body>
+<body class="bg-light">
     <div class="container">
         <header class="blog-header py-3">
             <div class="row flex-nowrap justify-content-between align-items-center">
@@ -33,6 +33,13 @@
             </div>
         </header>
         <div class="row flex-nowrap justify-content-between align-items-center">
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+                    {% endfor %}
+            </ul>
+            {% endif %}
             <form action="/process" method="POST">
                 {% csrf_token %}
                 <input type="hidden" name="which_place" value="edit_show">
