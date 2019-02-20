@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Show Detail</title>
+    <link rel="icon" href="favicon.ico">
+    <!-- Bootstrap core CSS -->
+    {%load static%}
+    <link href="{% static 'tv_show_app/css/bootstrap.min.css'%}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="{% static 'tv_show_app/css/blog.css'%}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header class="blog-header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+                <!-- My template!! -->
+                <div class="col-4 pt-1">
+                    <p class="text-muted"></p>
+                </div>
+                <div class="col-4 pt-1">
+                    <p class="blog-header-logo text-dark">TV Show :{{this_show.id}}</p>
+                </div>
+                <div class="col-4 d-flex justify-content-end align-items-center">
+                    <a class="btn btn-sm btn-outline-secondary" href="/shows">Go Back</a>
+                </div>
+            </div>
+        </header>
+        <div class="row flex-nowrap justify-content-between align-items-center">
+            <ul class="list-group mb-3 mt-5 ml-5">
+                <li class="list-group-item d-flex justify-content-left">
+                    <strong>Title:</strong>
+                    <span>{{this_show.title}}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-left">
+                    <strong>Network:</strong>
+                    <span>{{this_show.network}}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-left">
+                    <strong>Release date:</strong>
+                    <span>{{this_show.release_date|date:"F j, Y"}}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-left">
+                    <strong>Description:</strong>
+                    <span>{{this_show.desc}}</span>
+                </li>
+               <br>
+               <br>
+               <br>
+                <li class="list-group-item d-flex justify-content-left">
+                    <strong>Last Updated:</strong>
+                    <span>{{this_show.updated_at|date:"F j, Y"}}</span>
+                </li>
+
+            </ul>
+        </div>
+        <div class= "row  ml-5">
+            <a href="/shows/{{this_show.id }}/edit"> Edit</a>&nbsp|<a href="/shows/{{this_show.id }}/destroy"> Delete</a>
+        </div>
+    </div>
+</body>
+
+</html>
