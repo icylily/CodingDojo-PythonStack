@@ -15,6 +15,8 @@ class ShowManager(models.Manager):
         recent_date = datetime.now()
         if release_date > recent_date:
             errors["release_date"] = "Release date should be in the past"
+        if  len(self.filter(title=postData["title"])) >0:
+            errors["existed"] = "This  title already existed!"
         return errors
 # Create your models here.
 class Show(models.Model):
